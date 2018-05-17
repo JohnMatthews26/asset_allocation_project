@@ -7,37 +7,49 @@ class DonutChart extends Component {
   constructor(props){
     super(props);
     this.state = {
-      asset1: 20,
-      asset2: 20,
-      asset3: 20,
-      asset4: 20,
-      asset5: 20,
-      asset1name: assets[0],
-      asset2name: assets[1],
-      asset3name: assets[2],
-      asset4name: assets[3],
-      asset5name: assets[4]
+      asset1_name: assets['asset1']['name'],
+      asset2_name: assets['asset2']['name'],
+      asset3_name: assets['asset3']['name'],
+      asset4_name: assets['asset4']['name'],
+      asset5_name: assets['asset5']['name'],
+      asset1_amount: assets['asset1']['amount'] + this.props.riskFactor,
+      asset2_amount: assets['asset2']['amount'] + this.props.riskFactor,
+      asset3_amount: assets['asset3']['amount'],
+      asset4_amount: assets['asset4']['amount'] - this.props.riskFactor,
+      asset5_amount: assets['asset5']['amount'] - this.props.riskFactor,
     };
-    this.update = this.update.bind(this);
   }
 
 
-
-  update(e){
-    return event => this.setState({[e]: event.target.value});
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.riskFactor !== this.props.riskFactor){
+      return this.setState({
+        asset1_amount: assets['asset1']['amount'] + this.props.riskFactor,
+        asset2_amount: assets['asset2']['amount'] + this.props.riskFactor,
+        asset3_amount: assets['asset3']['amount'],
+        asset4_amount: assets['asset4']['amount'] - this.props.riskFactor,
+        asset5_amount: assets['asset5']['amount'] - this.props.riskFactor,
+          });
+    }
   }
 
 
   render() {
+    console.log(this.props);
     return(
 
         <div className="donut_chart">
           <Donut data={[
-              {label: this.state.asset1name, value: this.state.asset1},
-              {label: this.state.asset2name, value: this.state.asset2},
-              {label: this.state.asset3name, value: this.state.asset3},
-              {label: this.state.asset4name, value: this.state.asset4},
-              {label: this.state.asset5name, value: this.state.asset5},
+              {label: this.state.asset1_name,
+              value: this.state.asset1_amount},
+              {label: this.state.asset2_name,
+              value: this.state.asset2_amount},
+              {label: this.state.asset3_name,
+              value: this.state.asset3_amount},
+              {label: this.state.asset4_name,
+              value: this.state.asset4_amount},
+              {label: this.state.asset5_name,
+              value: this.state.asset5_amount},
           ]}/>
         </div>
 

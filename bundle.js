@@ -10899,6 +10899,7 @@ var RiskInput = function (_Component) {
       risk_value: 5
     };
     _this.update = _this.update.bind(_this);
+    _this.riskFactor = _this.riskFactor.bind(_this);
     return _this;
   }
 
@@ -10912,6 +10913,12 @@ var RiskInput = function (_Component) {
       };
     }
   }, {
+    key: 'riskFactor',
+    value: function riskFactor() {
+      var baseline = (5 - this.state.risk_value) * 1.9;
+      return baseline;
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -10920,8 +10927,9 @@ var RiskInput = function (_Component) {
         _react2.default.createElement('input', { type: 'range', min: '1', max: '10',
           value: this.state.risk_value, className: 'slider', onChange: this.update('risk_value') }),
         this.state.risk_value,
-        _react2.default.createElement('input', { type: 'submit', value: 'Check my desired portfolio' }),
-        _react2.default.createElement(_donut_chart2.default, { risk: this.state.risk_value })
+        _react2.default.createElement(_donut_chart2.default, { risk: this.state.risk_value,
+          riskFactor: this.riskFactor()
+        })
       );
     }
   }]);
@@ -20087,8 +20095,6 @@ var _assets2 = _interopRequireDefault(_assets);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -20104,37 +20110,46 @@ var DonutChart = function (_Component) {
     var _this = _possibleConstructorReturn(this, (DonutChart.__proto__ || Object.getPrototypeOf(DonutChart)).call(this, props));
 
     _this.state = {
-      asset1: 20,
-      asset2: 20,
-      asset3: 20,
-      asset4: 20,
-      asset5: 20,
-      asset1name: _assets2.default[0],
-      asset2name: _assets2.default[1],
-      asset3name: _assets2.default[2],
-      asset4name: _assets2.default[3],
-      asset5name: _assets2.default[4]
+      asset1_name: _assets2.default['asset1']['name'],
+      asset2_name: _assets2.default['asset2']['name'],
+      asset3_name: _assets2.default['asset3']['name'],
+      asset4_name: _assets2.default['asset4']['name'],
+      asset5_name: _assets2.default['asset5']['name'],
+      asset1_amount: _assets2.default['asset1']['amount'] + _this.props.riskFactor,
+      asset2_amount: _assets2.default['asset2']['amount'] + _this.props.riskFactor,
+      asset3_amount: _assets2.default['asset3']['amount'],
+      asset4_amount: _assets2.default['asset4']['amount'] - _this.props.riskFactor,
+      asset5_amount: _assets2.default['asset5']['amount'] - _this.props.riskFactor
     };
-    _this.update = _this.update.bind(_this);
     return _this;
   }
 
   _createClass(DonutChart, [{
-    key: 'update',
-    value: function update(e) {
-      var _this2 = this;
-
-      return function (event) {
-        return _this2.setState(_defineProperty({}, e, event.target.value));
-      };
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevProps.riskFactor !== this.props.riskFactor) {
+        return this.setState({
+          asset1_amount: _assets2.default['asset1']['amount'] + this.props.riskFactor,
+          asset2_amount: _assets2.default['asset2']['amount'] + this.props.riskFactor,
+          asset3_amount: _assets2.default['asset3']['amount'],
+          asset4_amount: _assets2.default['asset4']['amount'] - this.props.riskFactor,
+          asset5_amount: _assets2.default['asset5']['amount'] - this.props.riskFactor
+        });
+      }
     }
   }, {
     key: 'render',
     value: function render() {
+      console.log(this.props);
       return _react2.default.createElement(
         'div',
         { className: 'donut_chart' },
-        _react2.default.createElement(_reactDonutChart2.default, { data: [{ label: this.state.asset1name, value: this.state.asset1 }, { label: this.state.asset2name, value: this.state.asset2 }, { label: this.state.asset3name, value: this.state.asset3 }, { label: this.state.asset4name, value: this.state.asset4 }, { label: this.state.asset5name, value: this.state.asset5 }] })
+        _react2.default.createElement(_reactDonutChart2.default, { data: [{ label: this.state.asset1_name,
+            value: this.state.asset1_amount }, { label: this.state.asset2_name,
+            value: this.state.asset2_amount }, { label: this.state.asset3_name,
+            value: this.state.asset3_amount }, { label: this.state.asset4_name,
+            value: this.state.asset4_amount }, { label: this.state.asset5_name,
+            value: this.state.asset5_amount }] })
       );
     }
   }]);
@@ -25619,7 +25634,14 @@ Y=X&&W||X;module.exports=Y["default"]?Y["default"]:Y;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var assets = ['Cash', 'Bonds', 'Stocks', 'Real Esate', 'Emerging Market Stocks'];
+// let assets = {'Cash': 10, 'Bonds': 45, 'Real Esate': 10, 'Stocks': 25, 'Emerging Market Stocks': 10};
+var assets = {
+  'asset1': { 'name': 'Cash', amount: 10 },
+  'asset2': { 'name': 'Bonds', amount: 45 },
+  'asset3': { 'name': 'Real Estate', amount: 10 },
+  'asset4': { 'name': 'Stocks', amount: 25 },
+  'asset5': { 'name': 'Emerging Market Stocks', amount: 10 }
+};
 exports.default = assets;
 
 /***/ })
