@@ -25693,14 +25693,15 @@ var UserPortfolio = function (_Component) {
     var _this = _possibleConstructorReturn(this, (UserPortfolio.__proto__ || Object.getPrototypeOf(UserPortfolio)).call(this, props));
 
     _this.state = {
-      asset1_amount: 0,
-      asset2_amount: 0,
-      asset3_amount: 0,
-      asset4_amount: 0,
-      asset5_amount: 0
+      asset1_current_holdings: 0,
+      asset2_current_holdings: 0,
+      asset3_current_holdings: 0,
+      asset4_current_holdings: 0,
+      asset5_current_holdings: 0
     };
     _this.update = _this.update.bind(_this);
     _this.userCurrentAssetAllocations = _this.userCurrentAssetAllocations.bind(_this);
+    _this.renderTradesRequired = _this.renderTradesRequired.bind(_this);
     return _this;
   }
 
@@ -25715,23 +25716,32 @@ var UserPortfolio = function (_Component) {
     }
   }, {
     key: 'renderTradesRequired',
-    value: function renderTradesRequired() {}
+    value: function renderTradesRequired(e) {
+      e.preventDefault();
+      console.log('it is being called');
+      return _react2.default.createElement(
+        'div',
+        { className: 'trades-required-div' },
+        _react2.default.createElement('ul', { className: 'trades-required' })
+      );
+    }
   }, {
     key: 'userCurrentAssetAllocations',
     value: function userCurrentAssetAllocations() {
-      var total = this.state.asset1_amount + this.state.asset2_amount + this.state.asset3_amount + this.state.asset4_amount + this.state.asset5_amount;
+      var total = this.state.asset1_current_holdings + this.state.asset2_current_holdings + this.state.asset3_current_holdings + this.state.asset4_current_holdings + this.state.asset5_current_holdings;
 
-      var asset1Percentage = this.state.asset1_amount / total;
-      var asset2Percentage = this.state.asset2_amount / total;
-      var asset3Percentage = this.state.asset3_amount / total;
-      var asset4Percentage = this.state.asset4_amount / total;
-      var asset5Percentage = this.state.asset5_amount / total;
+      var asset1Percentage = this.state.asset1_current_holdings / total;
+      var asset2Percentage = this.state.asset2_current_holdings / total;
+      var asset3Percentage = this.state.asset3_current_holdings / total;
+      var asset4Percentage = this.state.asset4_current_holdings / total;
+      var asset5Percentage = this.state.asset5_current_holdings / total;
 
       return [asset1Percentage, asset2Percentage, asset3Percentage, asset4Percentage, asset5Percentage];
     }
   }, {
     key: 'render',
     value: function render() {
+      console.log(this.renderTradesRequired);
       return _react2.default.createElement(
         'div',
         { className: 'user-portfolio-div' },
@@ -25740,23 +25750,23 @@ var UserPortfolio = function (_Component) {
           { className: 'user-asset-input' },
           _react2.default.createElement('input', {
             placeholder: '' + _assets2.default['asset1']['name'],
-            onChange: this.update('asset1_amount') }),
+            onChange: this.update('asset1_current_holdings') }),
           _react2.default.createElement('input', {
             placeholder: '' + _assets2.default['asset2']['name'],
-            onChange: this.update('asset2_amount') }),
+            onChange: this.update('asset2_current_holdings') }),
           _react2.default.createElement('input', {
             placeholder: '' + _assets2.default['asset3']['name'],
-            onChange: this.update('asset3_amount') }),
+            onChange: this.update('asset3_current_holdings') }),
           _react2.default.createElement('input', {
             placeholder: '' + _assets2.default['asset4']['name'],
-            onChange: this.update('asset4_amount') }),
+            onChange: this.update('asset4_current_holdings') }),
           _react2.default.createElement('input', {
             placeholder: '' + _assets2.default['asset5']['name'],
-            onChange: this.update('asset5_amount') })
+            onChange: this.update('asset5_current_holdings') })
         ),
         _react2.default.createElement('input', { type: 'submit',
           value: 'Trades required for optimal portfolio',
-          onClick: this.renderTradesRequired() })
+          onClick: this.renderTradesRequired })
       );
     }
   }]);
