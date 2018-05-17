@@ -23,6 +23,7 @@ class RiskInput extends React.Component {
           <input type="range" min="1" max="10"
             value={this.state.risk_value} className="slider" onChange={this.update('risk_value')}/>
           {this.state.risk_value}
+          <input type="submit" value="Check my optimized portfolio"></input>
         </div>
 
     );
