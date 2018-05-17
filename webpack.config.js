@@ -1,26 +1,27 @@
-const path = require('path');
+
+var path = require("path");
 
 module.exports = {
   context: __dirname,
   entry: "./frontend/root.jsx",
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
+        test: [/\.jsx?$/, /\.js?$/],
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['env', 'react', 'es2015']
         }
       }
     ]
   },
-  resolve: {
-    extensions: [".js", ".jsx", "*" ]
-  },
   devtool: 'source-map',
+  resolve: {
+    extensions: [".js", ".jsx", "*"]
+  }
 };
