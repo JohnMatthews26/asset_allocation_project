@@ -10877,6 +10877,10 @@ var _donut_chart = __webpack_require__(160);
 
 var _donut_chart2 = _interopRequireDefault(_donut_chart);
 
+var _user_portfolio = __webpack_require__(273);
+
+var _user_portfolio2 = _interopRequireDefault(_user_portfolio);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -10929,7 +10933,8 @@ var RiskInput = function (_Component) {
         this.state.risk_value,
         _react2.default.createElement(_donut_chart2.default, { risk: this.state.risk_value,
           riskFactor: this.riskFactor()
-        })
+        }),
+        _react2.default.createElement(_user_portfolio2.default, null)
       );
     }
   }]);
@@ -20140,7 +20145,7 @@ var DonutChart = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.props);
+
       return _react2.default.createElement(
         'div',
         { className: 'donut_chart' },
@@ -25643,6 +25648,123 @@ var assets = {
   'asset5': { 'name': 'Emerging Market Stocks', amount: 10 }
 };
 exports.default = assets;
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(52);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(51);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _assets = __webpack_require__(272);
+
+var _assets2 = _interopRequireDefault(_assets);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserPortfolio = function (_Component) {
+  _inherits(UserPortfolio, _Component);
+
+  function UserPortfolio(props) {
+    _classCallCheck(this, UserPortfolio);
+
+    var _this = _possibleConstructorReturn(this, (UserPortfolio.__proto__ || Object.getPrototypeOf(UserPortfolio)).call(this, props));
+
+    _this.state = {
+      asset1_amount: 0,
+      asset2_amount: 0,
+      asset3_amount: 0,
+      asset4_amount: 0,
+      asset5_amount: 0
+    };
+    _this.update = _this.update.bind(_this);
+    _this.userCurrentAssetAllocations = _this.userCurrentAssetAllocations.bind(_this);
+    return _this;
+  }
+
+  _createClass(UserPortfolio, [{
+    key: 'update',
+    value: function update(e) {
+      var _this2 = this;
+
+      return function (event) {
+        return _this2.setState(_defineProperty({}, e, event.target.value));
+      };
+    }
+  }, {
+    key: 'renderTradesRequired',
+    value: function renderTradesRequired() {}
+  }, {
+    key: 'userCurrentAssetAllocations',
+    value: function userCurrentAssetAllocations() {
+      var total = this.state.asset1_amount + this.state.asset2_amount + this.state.asset3_amount + this.state.asset4_amount + this.state.asset5_amount;
+
+      var asset1Percentage = this.state.asset1_amount / total;
+      var asset2Percentage = this.state.asset2_amount / total;
+      var asset3Percentage = this.state.asset3_amount / total;
+      var asset4Percentage = this.state.asset4_amount / total;
+      var asset5Percentage = this.state.asset5_amount / total;
+
+      return [asset1Percentage, asset2Percentage, asset3Percentage, asset4Percentage, asset5Percentage];
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'user-portfolio-div' },
+        _react2.default.createElement(
+          'div',
+          { className: 'user-asset-input' },
+          _react2.default.createElement('input', {
+            placeholder: '' + _assets2.default['asset1']['name'],
+            onChange: this.update('asset1_amount') }),
+          _react2.default.createElement('input', {
+            placeholder: '' + _assets2.default['asset2']['name'],
+            onChange: this.update('asset2_amount') }),
+          _react2.default.createElement('input', {
+            placeholder: '' + _assets2.default['asset3']['name'],
+            onChange: this.update('asset3_amount') }),
+          _react2.default.createElement('input', {
+            placeholder: '' + _assets2.default['asset4']['name'],
+            onChange: this.update('asset4_amount') }),
+          _react2.default.createElement('input', {
+            placeholder: '' + _assets2.default['asset5']['name'],
+            onChange: this.update('asset5_amount') })
+        ),
+        _react2.default.createElement('input', { type: 'submit',
+          value: 'Trades required for optimal portfolio',
+          onClick: this.renderTradesRequired() })
+      );
+    }
+  }]);
+
+  return UserPortfolio;
+}(_react.Component);
+
+exports.default = UserPortfolio;
 
 /***/ })
 /******/ ]);

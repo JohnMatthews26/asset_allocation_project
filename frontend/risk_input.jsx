@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import DonutChart from './donut_chart';
-
+import UserPortfolio from './user_portfolio';
 
 class RiskInput extends Component {
   constructor(props){
@@ -33,6 +33,7 @@ class RiskInput extends Component {
           <DonutChart risk={this.state.risk_value}
             riskFactor={this.riskFactor()}
             />
+          <UserPortfolio/>
         </div>
 
     );

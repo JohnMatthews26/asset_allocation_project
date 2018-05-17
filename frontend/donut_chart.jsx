@@ -35,7 +35,7 @@ class DonutChart extends Component {
 
 
   render() {
-    console.log(this.props);
+
     return(
 
         <div className="donut_chart">
