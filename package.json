@@ -1,40 +1,24 @@
 {
-  "name": "asset_allocation_project",
+  "name": "widgets",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JohnMatthews26/asset_allocation_project.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JohnMatthews26/asset_allocation_project/issues"
-  },
-  "homepage": "https://github.com/JohnMatthews26/asset_allocation_project#readme",
   "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "lodash": "^4.17.10",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "redux": "^4.0.0",
-    "webpack": "^4.8.3"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "webpack-cli": "^2.1.3"
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.1.4",
+    "react": "^0.14.2",
+    "react-addons-css-transition-group": "^0.14.6",
+    "react-dom": "^0.14.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }

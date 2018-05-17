@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import RiskInput from './risk_input';
 
 
 class Root extends React.Component {
   render() {
     return(
       <div>
-        Hello World
+        <RiskInput/>
       </div>
     );
   }
