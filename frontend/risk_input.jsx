@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import DonutChart from './donut_chart';
 
-
-class RiskInput extends React.Component {
+class RiskInput extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -23,7 +23,8 @@ class RiskInput extends React.Component {
           <input type="range" min="1" max="10"
             value={this.state.risk_value} className="slider" onChange={this.update('risk_value')}/>
           {this.state.risk_value}
-          <input type="submit" value="Check my optimized portfolio"></input>
+          <input type="submit" value="Check my desired portfolio"></input>
+          <DonutChart risk={this.state.risk_value}/>
         </div>
 
     );
