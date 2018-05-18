@@ -42,11 +42,15 @@ class RiskInput extends Component {
   render() {
     return(
 
-        <div className="risk_slider">
+        <div className="main-div">
+          <div className='slider-div'>
           <input type="range" min="1" max="10"
             value={this.state.risk_value} className="slider"
             onChange={this.update('risk_value')}/>
-          {this.state.risk_value}
+          <section className='risk-text'>
+          Current Level of Risk: {this.state.risk_value}
+          </section>
+          </div>
           <DonutChart assets={this.riskAdjustedAssets()}
             riskFactor={this.state.risk_value}
             />

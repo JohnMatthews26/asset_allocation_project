@@ -45,16 +45,21 @@ class Assets extends Component {
     const entryCheck = tradesRequired ? (
       <div className="user-portfolio-div">
         <div className='user-asset-input'>
-          {inputsArr.map(input => <label>{input[1].name}
-            <input
-            onChange={this.update(input[0])} placeholder='$' />
+          {inputsArr.map(input => <label key={input[1].name} className='trades'>
+          {input[1].name}
+            <input key={input[1].name}
+            onChange={this.update(input[0])} placeholder='$'
+            className='userAmount'/>
         </label>
           )}
-          <button onClick={this.sumTotalHoldings('total_holdings')}></button>
+          <button onClick={this.sumTotalHoldings('total_holdings')}
+            className='show-trades-button'>Optimize My Portfolio
+          </button>
         </div>
         <ul>
           {inputsArr.map(input =>
-            <li>
+            <li key={input[1].name}>
+
               {input[1].amount * this.state.total_holdings * .01
                 - this.state[input[0]]}
             </li>
@@ -65,12 +70,16 @@ class Assets extends Component {
     ) : (
       <div className="user-portfolio-div">
         <div className='user-asset-input'>
-          {inputsArr.map(input => <label>{input[1].name}
-            <input
-            onChange={this.update(input[0])} placeholder='$' />
+          {inputsArr.map(input => <label key={input[1].name} className='trades'>
+          {input[1].name}
+          <input key={input[1].name}
+          onChange={this.update(input[0])} placeholder='$'
+          className='userAmount'/>
         </label>
           )}
-          <button onClick={this.sumTotalHoldings('total_holdings')}></button>
+          <button onClick={this.sumTotalHoldings('total_holdings')}
+            className='show-trades-button'>Optimize My Portfolio
+          </button>
         </div>
       </div>
     );
