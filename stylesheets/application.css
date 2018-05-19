@@ -29,6 +29,7 @@
 .user-asset-input {
     display: flex;
     flex-direction: column;
+    margin-left: 20px;
     align-items: flex-start;
 }
 
@@ -49,10 +50,12 @@ button.show-trades-button {
     align-items: center;
     width: 100%;
     justify-content: center;
+    color: white;
 }
 
 .slider-div {
     display: flex;
+    margin-left: 20px;
     flex-direction: column;
 }
 
@@ -84,6 +87,10 @@ input.userAmount {
 ul.trades-ul {
     display: flex;
     flex-direction: column;
+    height: 200px;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    opacity: .8;
 }
 
 li.trades {
@@ -92,19 +99,81 @@ li.trades {
 
 .user-portfolio-div {
     display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
 }
 
 label.trades {
-    margin: 3px;
+    margin-bottom: 3px;
 }
 
 h2#risk-header {
+    margin-top: 10px;
     font-weight: bold;
     font-size: larger;
+    color: bisque;
 }
 
+section.risk-text {
+    margin-top: 10px;
+}
 
+li.neg-trades {
+    color: red;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
+li.pos-trades {
+    color: green;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+span.asset-name {
+    margin-left: 5px;
+    font-size: large;
+    font-weight: 800;
+    color: bisque;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: inherit;
+    background-image: url(http://res.cloudinary.com/roscoe/image/upload/v1526772568/blue_acoicg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.div {
+    height: inherit;
+}
+
+.donut-slider-div {
+    margin-top: 10px;
+}
+
+span.trade-assetclass {
+    font-size: large;
+    font-weight: 800;
+    color: darkred;
+}
+
+span.trade-rec-span {
+    font-size: large;
+    font-weight: 700;
+    color: darkblue;
+}
 /* CSS RESET
 
 /* http://meyerweb.com/eric/tools/css/reset/

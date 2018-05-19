@@ -6,7 +6,7 @@ import RiskInput from './risk_input';
 class Root extends React.Component {
   render() {
     return(
-      <div>
+      <div className='div'>
         <RiskInput/>
       </div>
     );

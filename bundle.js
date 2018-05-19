@@ -12245,24 +12245,28 @@ var RiskInput = function (_Component) {
         { className: 'main-div' },
         _react2.default.createElement(
           'div',
-          { className: 'slider-div' },
-          _react2.default.createElement('input', { type: 'range', min: '1', max: '10',
-            value: this.state.risk_value, className: 'slider',
-            onChange: this.update('risk_value') }),
+          { className: 'donut-slider-div' },
           _react2.default.createElement(
-            'section',
-            { className: 'risk-text' },
+            'div',
+            { className: 'slider-div' },
+            _react2.default.createElement('input', { type: 'range', min: '1', max: '10',
+              value: this.state.risk_value, className: 'slider',
+              onChange: this.update('risk_value') }),
             _react2.default.createElement(
-              'h2',
-              { id: 'risk-header' },
-              'Current Level of Risk: ',
-              this.state.risk_value
+              'section',
+              { className: 'risk-text' },
+              _react2.default.createElement(
+                'h2',
+                { id: 'risk-header' },
+                'Current Level of Risk: ',
+                this.state.risk_value
+              )
             )
-          )
+          ),
+          _react2.default.createElement(_donut_chart2.default, { assets: this.riskAdjustedAssets(),
+            riskFactor: this.state.risk_value
+          })
         ),
-        _react2.default.createElement(_donut_chart2.default, { assets: this.riskAdjustedAssets(),
-          riskFactor: this.state.risk_value
-        }),
         _react2.default.createElement(_assets2.default, { assets: this.riskAdjustedAssets(),
           riskFactor: this.state.risk_value })
       );
@@ -12352,70 +12356,86 @@ var Assets = function (_Component) {
 
       var tradesRequired = parseInt(this.state.total_holdings) !== 0;
       var inputsArr = Object.entries(this.props.assets);
+      var divVar = _react2.default.createElement(
+        'div',
+        { className: 'user-asset-input' },
+        inputsArr.map(function (input) {
+          return _react2.default.createElement(
+            'label',
+            { key: input[1].name, className: 'trades' },
+            _react2.default.createElement(
+              'span',
+              { className: 'asset-name' },
+              input[1].name
+            ),
+            _react2.default.createElement('input', { key: input[1].name,
+              onChange: _this4.update(input[0]), placeholder: '$',
+              className: 'userAmount' })
+          );
+        }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.sumTotalHoldings('total_holdings'),
+            className: 'show-trades-button' },
+          'Optimize My Portfolio'
+        )
+      );
+
+      var sellBuyCheck = function sellBuyCheck(trade) {
+        if (trade[1].amount * _this4.state.total_holdings * .01 - _this4.state[trade[0]] < 0) {
+          return 'neg-trades';
+        } else {
+          return 'pos-trades';
+        }
+      };
+
+      var negPosCheck = function negPosCheck(trade) {
+        if (trade[1].amount * _this4.state.total_holdings * .01 - _this4.state[trade[0]] < 0) {
+          return 'Sell';
+        } else {
+          return 'Buy';
+        }
+      };
 
       var entryCheck = tradesRequired ? _react2.default.createElement(
         'div',
         { className: 'user-portfolio-div' },
-        _react2.default.createElement(
-          'div',
-          { className: 'user-asset-input' },
-          inputsArr.map(function (input) {
-            return _react2.default.createElement(
-              'label',
-              { key: input[1].name, className: 'trades' },
-              input[1].name,
-              _react2.default.createElement('input', { key: input[1].name,
-                onChange: _this4.update(input[0]), placeholder: '$',
-                className: 'userAmount' })
-            );
-          }),
-          _react2.default.createElement(
-            'button',
-            { onClick: this.sumTotalHoldings('total_holdings'),
-              className: 'show-trades-button' },
-            'Optimize My Portfolio'
-          )
-        ),
+        divVar,
         _react2.default.createElement(
           'ul',
           { className: 'trades-ul' },
-          inputsArr.map(function (input) {
+          inputsArr.map(function (trade) {
             return _react2.default.createElement(
               'li',
-              { key: input[1].name, className: 'trades' },
-              '$ ',
-              input[1].amount * _this4.state.total_holdings * .01 - _this4.state[input[0]]
+              { key: trade[1].name, className: sellBuyCheck(trade) },
+              _react2.default.createElement(
+                'span',
+                { className: 'trade-rec-span' },
+                negPosCheck(trade)
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'trade-assetclass' },
+                trade[1].name
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'dollar-amt' },
+                '$',
+                trade[1].amount * _this4.state.total_holdings * .01 - _this4.state[trade[0]]
+              )
             );
           })
         )
       ) : _react2.default.createElement(
         'div',
         { className: 'user-portfolio-div' },
-        _react2.default.createElement(
-          'div',
-          { className: 'user-asset-input' },
-          inputsArr.map(function (input) {
-            return _react2.default.createElement(
-              'label',
-              { key: input[1].name, className: 'trades' },
-              input[1].name,
-              _react2.default.createElement('input', { key: input[1].name,
-                onChange: _this4.update(input[0]), placeholder: '$',
-                className: 'userAmount' })
-            );
-          }),
-          _react2.default.createElement(
-            'button',
-            { onClick: this.sumTotalHoldings('total_holdings'),
-              className: 'show-trades-button' },
-            'Optimize My Portfolio'
-          )
-        )
+        divVar
       );
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'trade-recommendations-div' },
         entryCheck
       );
     }
@@ -12567,7 +12587,7 @@ var Root = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'div' },
         _react2.default.createElement(_risk_input2.default, null)
       );
     }

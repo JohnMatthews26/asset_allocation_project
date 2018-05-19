@@ -43,19 +43,21 @@ class RiskInput extends Component {
     return(
 
         <div className="main-div">
-          <div className='slider-div'>
-          <input type="range" min="1" max="10"
-            value={this.state.risk_value} className="slider"
-            onChange={this.update('risk_value')}/>
-          <section className='risk-text'>
-            <h2 id='risk-header'>
-              Current Level of Risk: {this.state.risk_value}
-            </h2>
-          </section>
+          <div className='donut-slider-div'>
+            <div className='slider-div'>
+            <input type="range" min="1" max="10"
+              value={this.state.risk_value} className="slider"
+              onChange={this.update('risk_value')}/>
+            <section className='risk-text'>
+              <h2 id='risk-header'>
+                Current Level of Risk: {this.state.risk_value}
+              </h2>
+            </section>
+            </div>
+            <DonutChart assets={this.riskAdjustedAssets()}
+              riskFactor={this.state.risk_value}
+              />
           </div>
-          <DonutChart assets={this.riskAdjustedAssets()}
-            riskFactor={this.state.risk_value}
-            />
           <Assets assets={this.riskAdjustedAssets()}
             riskFactor={this.state.risk_value}/>
         </div>
