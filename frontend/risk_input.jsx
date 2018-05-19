@@ -48,7 +48,9 @@ class RiskInput extends Component {
             value={this.state.risk_value} className="slider"
             onChange={this.update('risk_value')}/>
           <section className='risk-text'>
-          Current Level of Risk: {this.state.risk_value}
+            <h2 id='risk-header'>
+              Current Level of Risk: {this.state.risk_value}
+            </h2>
           </section>
           </div>
           <DonutChart assets={this.riskAdjustedAssets()}

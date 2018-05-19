@@ -12252,8 +12252,12 @@ var RiskInput = function (_Component) {
           _react2.default.createElement(
             'section',
             { className: 'risk-text' },
-            'Current Level of Risk: ',
-            this.state.risk_value
+            _react2.default.createElement(
+              'h2',
+              { id: 'risk-header' },
+              'Current Level of Risk: ',
+              this.state.risk_value
+            )
           )
         ),
         _react2.default.createElement(_donut_chart2.default, { assets: this.riskAdjustedAssets(),
@@ -12374,11 +12378,12 @@ var Assets = function (_Component) {
         ),
         _react2.default.createElement(
           'ul',
-          null,
+          { className: 'trades-ul' },
           inputsArr.map(function (input) {
             return _react2.default.createElement(
               'li',
-              { key: input[1].name },
+              { key: input[1].name, className: 'trades' },
+              '$ ',
               input[1].amount * _this4.state.total_holdings * .01 - _this4.state[input[0]]
             );
           })

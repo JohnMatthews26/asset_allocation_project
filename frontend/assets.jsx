@@ -56,11 +56,12 @@ class Assets extends Component {
             className='show-trades-button'>Optimize My Portfolio
           </button>
         </div>
-        <ul>
+        <ul className='trades-ul'>
           {inputsArr.map(input =>
-            <li key={input[1].name}>
+            <li key={input[1].name} className='trades'>
 
-              {input[1].amount * this.state.total_holdings * .01
+
+              $ {input[1].amount * this.state.total_holdings * .01
                 - this.state[input[0]]}
             </li>
           )}
