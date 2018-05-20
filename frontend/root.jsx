@@ -7,6 +7,7 @@ class Root extends React.Component {
   render() {
     return(
       <div className='div'>
+        <header className='header-bar'><h1>Asset Allocation Tool</h1></header>
         <RiskInput/>
       </div>
     );

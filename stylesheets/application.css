@@ -10,6 +10,21 @@
     transition: opacity .2s;
 }
 
+ul#instructions-ul {
+    max-width: 300px;
+}
+
+li.instructions {
+    font-size: large;
+}
+
+header.header-bar {
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Mouse-over effects */
 .slider:hover {
     opacity: 1; /* Fully shown on mouse-over */
@@ -49,6 +64,7 @@ button.show-trades-button {
     display: flex;
     align-items: center;
     width: 100%;
+    height: 400px;
     justify-content: center;
     color: white;
 }
@@ -91,6 +107,8 @@ ul.trades-ul {
     justify-content: space-evenly;
     margin-top: 20px;
     opacity: .8;
+    margin-right: 15px;
+    max-width: 300px;
 }
 
 li.trades {
@@ -101,8 +119,9 @@ li.trades {
     display: flex;
     height: 100%;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 label.trades {
@@ -140,7 +159,7 @@ li.pos-trades {
 
 span.asset-name {
     margin-left: 5px;
-    font-size: large;
+    font-size: small;
     font-weight: 800;
     color: bisque;
 }
@@ -164,15 +183,162 @@ span.asset-name {
 }
 
 span.trade-assetclass {
-    font-size: large;
+    font-size: small;
     font-weight: 800;
     color: darkred;
 }
 
 span.trade-rec-span {
-    font-size: large;
+    font-size: small;
     font-weight: 700;
     color: darkblue;
+}
+
+span.dollar-amt {
+    font-size: small;
+}
+
+svg.donutchart {
+    height: inherit;
+}
+
+@media screen and (min-width:640px) and (max-width:1000px) {
+  .donut-slider-div {
+    height: 400px;
+}
+
+li.instructions {
+    font-size: smaller;
+    margin-left: 5px;
+}
+
+ul.trades-ul {
+    width: 200px;
+    height: 100px;
+}
+
+span.trade-assetclass {
+    font-size: xx-small;
+}
+
+span {
+    font-size: xx-small;
+}
+
+span.asset-name {font-size: xx-small;}
+
+input.userAmount {
+    width: 50px;
+    font-size: xx-small;
+}
+
+svg.donutchart {
+    height: 400px;
+    width: 500px;
+}
+
+.user-portfolio-div {
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 100px;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: inherit;
+  background-image: url(http://res.cloudinary.com/roscoe/image/upload/v1526772568/blue_acoicg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h2#risk-header {
+    font-size: x-small;
+}
+
+span.trade-rec-span {
+    font-size: x-small;
+}
+
+span.dollar-amt {
+  font-size: x-small;
+}
+
+button.show-trades-button {
+    width: 100px;
+    font-size: xx-small;
+}
+}
+
+@media screen and (min-width:320px) and (max-width:640px) {
+    .donut-slider-div {
+      height: 400px;
+  }
+
+  li.instructions {
+      font-size: smaller;
+      margin-left: 5px;
+  }
+
+  ul.trades-ul {
+      width: 200px;
+      height: 100px;
+  }
+
+  span.trade-assetclass {
+      font-size: xx-small;
+  }
+
+  span {
+      font-size: xx-small;
+  }
+
+  span.asset-name {font-size: xx-small;}
+
+  input.userAmount {
+      width: 50px;
+      font-size: xx-small;
+  }
+
+  svg.donutchart {
+      height: 200px;
+      width: 300px;
+  }
+
+  .user-portfolio-div {
+      flex-direction: row;
+      justify-content: center;
+      align-items: end;
+  }
+
+  .main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: inherit;
+    background-image: url(http://res.cloudinary.com/roscoe/image/upload/v1526772568/blue_acoicg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+  h2#risk-header {
+      font-size: x-small;
+  }
+
+  span.trade-rec-span {
+      font-size: x-small;
+  }
+
+  span.dollar-amt {
+    font-size: x-small;
+  }
+
+  button.show-trades-button {
+      width: 100px;
+      font-size: xx-small;
+  }
 }
 /* CSS RESET
 

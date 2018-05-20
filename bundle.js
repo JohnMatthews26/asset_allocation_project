@@ -12203,7 +12203,6 @@ var RiskInput = function (_Component) {
       risk_value: 5
     };
     _this.update = _this.update.bind(_this);
-    _this.riskFactor = _this.riskFactor.bind(_this);
     _this.riskAdjustedAssets = _this.riskAdjustedAssets.bind(_this);
     return _this;
   }
@@ -12218,22 +12217,15 @@ var RiskInput = function (_Component) {
       };
     }
   }, {
-    key: 'riskFactor',
-    value: function riskFactor() {
-
-      var factor = (5 - this.state.risk_value) * 1.9;
-      return factor;
-    }
-  }, {
     key: 'riskAdjustedAssets',
     value: function riskAdjustedAssets() {
-      var factor = this.riskFactor();
+      var factor = (this.state.risk_value - 5) * 1.5;
       var adjustedAssets = {
-        asset1: { amount: _inputs2.default.asset1.amount + factor, name: _inputs2.default.asset1.name },
-        asset2: { amount: _inputs2.default.asset2.amount + factor, name: _inputs2.default.asset2.name },
+        asset1: { amount: _inputs2.default.asset1.amount - factor, name: _inputs2.default.asset1.name },
+        asset2: { amount: _inputs2.default.asset2.amount - factor, name: _inputs2.default.asset2.name },
         asset3: { amount: _inputs2.default.asset3.amount, name: _inputs2.default.asset3.name },
-        asset4: { amount: _inputs2.default.asset4.amount - factor, name: _inputs2.default.asset4.name },
-        asset5: { amount: _inputs2.default.asset5.amount - factor, name: _inputs2.default.asset5.name }
+        asset4: { amount: _inputs2.default.asset4.amount + factor, name: _inputs2.default.asset4.name },
+        asset5: { amount: _inputs2.default.asset5.amount + factor, name: _inputs2.default.asset5.name }
       };
       return adjustedAssets;
     }
@@ -12258,7 +12250,7 @@ var RiskInput = function (_Component) {
               _react2.default.createElement(
                 'h2',
                 { id: 'risk-header' },
-                'Current Level of Risk: ',
+                'Risk Profile: ',
                 this.state.risk_value
               )
             )
@@ -12380,6 +12372,21 @@ var Assets = function (_Component) {
           'Optimize My Portfolio'
         )
       );
+      var instructionsDiv = _react2.default.createElement(
+        'ul',
+        { id: 'instructions-ul' },
+        _react2.default.createElement(
+          'li',
+          { className: 'instructions' },
+          '1. Select your risk appetite from 1-10. A portfolio with a risk appetite of 1 is very conservative, and a risk appetite of 10 is very aggressive.'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'li',
+          { className: 'instructions' },
+          '2. Enter your current holdings in each respective asset class and click \'Optimize my Portfolio\' to see trade recommendations to align your portfolio with your risk appetite.'
+        )
+      );
 
       var sellBuyCheck = function sellBuyCheck(trade) {
         if (trade[1].amount * _this4.state.total_holdings * .01 - _this4.state[trade[0]] < 0) {
@@ -12400,6 +12407,7 @@ var Assets = function (_Component) {
       var entryCheck = tradesRequired ? _react2.default.createElement(
         'div',
         { className: 'user-portfolio-div' },
+        instructionsDiv,
         divVar,
         _react2.default.createElement(
           'ul',
@@ -12430,6 +12438,7 @@ var Assets = function (_Component) {
       ) : _react2.default.createElement(
         'div',
         { className: 'user-portfolio-div' },
+        instructionsDiv,
         divVar
       );
 
@@ -12588,6 +12597,15 @@ var Root = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'div' },
+        _react2.default.createElement(
+          'header',
+          { className: 'header-bar' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Asset Allocation Tool'
+          )
+        ),
         _react2.default.createElement(_risk_input2.default, null)
       );
     }

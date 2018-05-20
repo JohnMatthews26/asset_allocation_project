@@ -39,6 +39,7 @@ class Assets extends Component {
 
 
   render() {
+
     const tradesRequired = parseInt(this.state.total_holdings) !== 0;
     const inputsArr = Object.entries(this.props.assets);
     const divVar =
@@ -55,6 +56,18 @@ class Assets extends Component {
         </button>
       </div>
     ;
+    const instructionsDiv =
+    <ul id='instructions-ul'>
+      <li className='instructions'>1. Select your risk appetite from 1-10.
+        A portfolio with a risk appetite of 1 is very conservative,
+        and a risk appetite of 10 is very aggressive.</li>
+      <br/>
+      <li className='instructions'>2. Enter your current holdings in
+        each respective asset class
+        and click 'Optimize my Portfolio' to see
+        trade recommendations to align your portfolio
+        with your risk appetite.</li>
+    </ul>;
 
     const sellBuyCheck = (trade)=>{
       if (trade[1].amount * this.state.total_holdings * .01 - this.state[trade[0]] < 0){
@@ -75,7 +88,8 @@ class Assets extends Component {
 
     const entryCheck = tradesRequired ? (
       <div className="user-portfolio-div">
-      {divVar}
+        {instructionsDiv}
+        {divVar}
         <ul className='trades-ul'>
           {inputsArr.map(trade =>
             <li key={trade[1].name} className={sellBuyCheck(trade)}>
@@ -95,7 +109,9 @@ class Assets extends Component {
       </div>
     ) : (
       <div className="user-portfolio-div">
+        {instructionsDiv}
         {divVar}
+
       </div>
     );
 
